@@ -1,0 +1,77 @@
+-- Efface l'écran et met le curseur en haut à gauche
+term.clear()
+term.setCursorPos(1, 1)
+
+-- Liste des étapes de chargement
+local steps = {
+    "Initialisation du BIOS...",
+    "Chargement du noyau CraftOS...",
+    "Vérification de l'intégrité des fichiers système...",
+    "Montage du disque de démarrage...",
+    "Chargement des pilotes de périphériques...",
+    "Vérification de la mémoire RAM...",
+    "Initialisation du système de fichiers...",
+    "Chargement du gestionnaire de processus...",
+    "Démarrage des services réseau...",
+    "Chargement des modules de sécurité...",
+    "Vérification des comptes utilisateurs...",
+    "Chargement du service de mise à jour automatique...",
+    "Démarrage du service de base de données...",
+    "Chargement des outils système...",
+    "Initialisation du shell principal...",
+    "Vérification de la connexion réseau...",
+    "Démarrage de l'interface graphique...",
+    "Chargement des paramètres utilisateur...",
+    "Démarrage des services de gestion des fichiers...",
+    "Chargement des fichiers de configuration...",
+    "Vérification des périphériques externes...",
+    "Démarrage des services de sécurité...",
+    "Initialisation du réseau local...",
+    "Vérification du disque dur...",
+    "Vérification des mises à jour disponibles...",
+    "Chargement des services de sauvegarde...",
+    "Initialisation de la mémoire cache...",
+    "Chargement des applications de fond...",
+    "Démarrage de la connexion SSH...",
+    "Chargement des serveurs de jeux...",
+    "Vérification des accès utilisateurs...",
+    "Chargement des outils de développement...",
+    "Initialisation du système de notifications...",
+    "Démarrage du service de gestion des journaux...",
+    "Chargement des processus de sécurité réseau...",
+    "Vérification des API externes...",
+    "Démarrage du service de gestion des logs...",
+    "Chargement du gestionnaire de tâches...",
+    "Vérification de la base de données...",
+    "Chargement des modules de performance...",
+    "Démarrage de l'interface de commande..."
+    -- Ajoute ici d'autres étapes selon tes besoins pour atteindre 300+ étapes...
+}
+
+-- Fonction pour simuler un échec aléatoire
+local function stepWithFailure(step)
+  local failChance = math.random(1, 20)  -- 1 chance sur 20 d'échouer à chaque étape
+  if failChance == 1 then
+    print("❌ Échec lors de l'étape: " .. step)
+    return false -- Retourne faux pour indiquer l'échec
+  else
+    print(" [ OK ]") -- Si l'étape réussit
+    return true
+  end
+end
+
+-- Simule les étapes du démarrage avec délais aléatoires
+for _, step in ipairs(steps) do
+  write(step)
+  -- Ajoute un délai aléatoire entre 0.1 et 0.5 secondes pour chaque étape
+  sleep(0.1 + math.random() * 0.4)
+  if not stepWithFailure(step) then
+    print("Le système ne peut pas continuer en raison de l'échec de l'étape.")
+    print("Arrêt du démarrage...")
+    sleep(2)
+    return -- Arrête le script si une étape échoue
+  end
+end
+
+-- Message final après chargement réussi
+print("\nBienvenue sur CraftOS 1.19.2\n")
